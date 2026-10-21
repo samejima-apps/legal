@@ -1,0 +1,233 @@
+:root {
+    --bg: #ffffff;
+    --bg-soft: #f6f8fa;
+    --text: #1f2328;
+    --muted: #59636e;
+    --line: #d1d9e0;
+    --link: #0969da;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0d1117;
+        --bg-soft: #151b23;
+        --text: #e6edf3;
+        --muted: #9198a1;
+        --line: #3d444d;
+        --link: #4493f8;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 16px;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", Meiryo, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+a {
+    color: var(--link);
+    overflow-wrap: anywhere;
+}
+
+/* ヘッダー */
+.site-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 16px;
+    border-bottom: 1px solid var(--line);
+}
+
+.site-name {
+    font-weight: 700;
+}
+
+.lang-nav {
+    display: flex;
+    gap: 16px;
+}
+
+/* レイアウト: PC はサイドバー+本文、スマホは目次が上 */
+.layout {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+main {
+    min-width: 0;
+    padding-bottom: 64px;
+}
+
+@media (min-width: 900px) {
+    .layout {
+        display: grid;
+        grid-template-columns: 260px minmax(0, 1fr);
+        gap: 40px;
+    }
+
+    .toc {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        max-height: 100vh;
+        overflow-y: auto;
+        padding: 8px 0 24px;
+    }
+
+    .toc summary {
+        pointer-events: none;
+        list-style: none;
+    }
+
+    .toc summary::-webkit-details-marker {
+        display: none;
+    }
+}
+
+/* 目次 */
+.toc details {
+    margin: 16px 0;
+    padding: 12px 16px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.toc summary {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.toc ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.toc ul ul {
+    margin: 4px 0 12px;
+    padding-left: 12px;
+    border-left: 2px solid var(--line);
+}
+
+.toc li {
+    margin: 2px 0;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.toc a {
+    display: block;
+    padding: 4px 0;
+    text-decoration: none;
+}
+
+.toc .toc-lang {
+    margin-top: 8px;
+    color: var(--text);
+    font-weight: 700;
+}
+
+/* 本文 */
+.lang + .lang {
+    margin-top: 64px;
+    border-top: 2px solid var(--line);
+}
+
+.lang-label {
+    margin: 24px 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.doc {
+    padding-top: 8px;
+}
+
+.doc + .doc {
+    margin-top: 40px;
+    border-top: 1px solid var(--line);
+}
+
+h2 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin: 24px 0 16px;
+}
+
+h3 {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin: 24px 0 8px;
+}
+
+p {
+    margin: 0 0 8px;
+}
+
+.sub {
+    padding-left: 1.5em;
+}
+
+.operator {
+    margin-top: 24px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.operator p {
+    margin: 0;
+}
+
+/* 表(特商法表記) */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+}
+
+.info-table th,
+.info-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    vertical-align: top;
+}
+
+.info-table th {
+    width: 32%;
+    font-weight: 700;
+}
+
+@media (max-width: 560px) {
+    .info-table th,
+    .info-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .info-table th {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+}
